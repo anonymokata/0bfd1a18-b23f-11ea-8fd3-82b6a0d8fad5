@@ -1,6 +1,6 @@
 import Paper from './Paper';
 
-describe('The paper object', () => {
+describe('The paper class', () => {
     it('has empty contents upon initialization', () => {
         const page = new Paper();
         expect(page.getPageContents()).toBe('');

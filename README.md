@@ -1,11 +1,15 @@
 ## ✏️Pencil Durability Kata - [Live Demo (CodeSandbox.io)]()
 
-Thank you in advance for your review + feedback.
+Thank you for your time reviewing this submission. Any and all feedback is
+appreciated.
 
 ### Project Layout
 
 All source code is stored in `/src` alongside each respective testing file.
 Compiled typescript will be placed in `/dist`, and can be ignored. All other files in the root directory are purely configuration files for linting, testing, and typescript.
+
+Links any travis integration results have been removed in an effort
+to stay anonymous, as instructed.
 
 ### Running Locally
 
