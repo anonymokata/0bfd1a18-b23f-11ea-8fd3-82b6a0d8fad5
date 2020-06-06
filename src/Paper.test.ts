@@ -3,15 +3,15 @@ import Paper from './Paper';
 describe('The paper object', () => {
     it('Contains an empty string upon initialization', () => {
         const page = new Paper();
-        expect(page.text).toBe('');
+        expect(page.getWrittenText()).toBe('');
     });
 
     describe('printing sequence', () => {
         console.log = jest.fn();
-        it("prints it's text", () => {
+        it("prints it's written text", () => {
             const page = new Paper();
-            page.setText('Hey there');
-            page.printText();
+            page.setWrittenText('Hey there');
+            page.printPaper();
             expect(console.log).toHaveBeenCalledWith('Hey there');
         });
     });
@@ -19,8 +19,9 @@ describe('The paper object', () => {
     describe('writtenText property', () => {
         it('Is updated to the value given to setWrittenText', () => {
             const page = new Paper();
-            page.setText('Hello!');
-            expect(page.text).not.toBe('');
+            page.setWrittenText('Hello!');
+            expect(page.getWrittenText()).not.toBe('');
+            expect(page.getWrittenText()).toBe('Hello!');
         });
     });
 });

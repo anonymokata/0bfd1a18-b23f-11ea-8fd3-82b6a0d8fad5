@@ -1,3 +1,7 @@
-import returnBen from './returnBen';
+import clear from 'clear';
+import Paper from './Paper';
 
-console.log(returnBen());
+const page = new Paper();
+
+clear();
+page.printPaper();
