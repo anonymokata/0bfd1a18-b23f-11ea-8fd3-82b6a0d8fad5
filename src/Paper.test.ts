@@ -8,7 +8,7 @@ describe('The paper class', () => {
 
     describe('printing sequence', () => {
         console.log = jest.fn();
-        it("prints it's written text", () => {
+        it("prints it's written text in-between borders", () => {
             const page = new Paper();
             page.write('Hey there');
             page.showPaper();
