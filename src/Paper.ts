@@ -8,15 +8,15 @@ export default class Paper {
         this.writtenText = '';
     }
 
-    getWrittenText(): string {
+    getPageContents(): string {
         return this.writtenText;
     }
 
-    setWrittenText(newText: string): void {
-        this.writtenText = newText;
+    write(newText: string): void {
+        this.writtenText += newText;
     }
 
-    printPaper(): void {
+    showPaper(): void {
         clear();
         console.log('\n' + this.paperColor(this.formatStrings.top));
         console.log(this.writtenText);
