@@ -2,7 +2,7 @@ import Pencil from './Pencil';
 import Paper from './Paper';
 
 describe('The pencil class', () => {
-    describe('writes a given message a given paper', () => {
+    describe('can write a message on a given paper', () => {
         it('by utilizing Paper.write()', () => {
             const page = new Paper();
             const pencil = new Pencil();
@@ -12,11 +12,19 @@ describe('The pencil class', () => {
             pencil.writeOnPaper('Hi!', page);
             expect(page.write).toHaveBeenCalledTimes(1);
             expect(page.write).toHaveBeenCalledWith('Hi!');
-            expect(page.getPageContents()).toBe('Hi!');
 
             pencil.writeOnPaper(' Hello.', page);
             expect(page.write).toHaveBeenCalledTimes(2);
             expect(page.write).toHaveBeenCalledWith(' Hello.');
+        });
+
+        it('writing is persisted to the page', () => {
+            const page = new Paper();
+            const pencil = new Pencil();
+
+            pencil.writeOnPaper('Hi!', page);
+            expect(page.getPageContents()).toBe('Hi!');
+            pencil.writeOnPaper(' Hello.', page);
             expect(page.getPageContents()).toBe('Hi! Hello.');
         });
     });
