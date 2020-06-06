@@ -18,7 +18,6 @@ describe('The pencil class', () => {
             expect(page.write).toHaveBeenCalledWith('!');
             expect(page.write).toHaveBeenCalledTimes(3);
 
-            const msg = ' Hello.';
             pencil.writeOnPaper(' Hello.', page);
             expect(page.write).toHaveBeenCalledTimes(10);
         });

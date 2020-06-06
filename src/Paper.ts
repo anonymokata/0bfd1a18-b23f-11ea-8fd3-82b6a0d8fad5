@@ -17,7 +17,6 @@ export default class Paper {
     }
 
     showPaper(): void {
-        clear();
         console.log('\n' + this.paperColor(this.formatStrings.top));
         console.log(this.writtenText);
         console.log(this.paperColor(this.formatStrings.end) + '\n');
