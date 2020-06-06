@@ -7,6 +7,10 @@ export default class Pencil {
         return char.toUpperCase() === char;
     }
 
+    getDurability(): number {
+        return this.durability;
+    }
+
     writeOnPaper(text: string, page: Paper): void {
         text.split('').forEach((char) => {
             if (char === '\n' || char === ' ') page.write(char);
