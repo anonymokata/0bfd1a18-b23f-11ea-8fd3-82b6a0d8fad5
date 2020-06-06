@@ -1,4 +1,4 @@
-## Pencil Durability Kata - [Live Demo (CodeSandbox.io)]()
+## ✏️Pencil Durability Kata - [Live Demo (CodeSandbox.io)]()
 
 Thank you in advance for your review + feedback.
 
