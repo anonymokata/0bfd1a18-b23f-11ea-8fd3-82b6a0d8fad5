@@ -8,7 +8,7 @@ describe('The pencil class', () => {
     describe('can write a message on a given paper', () => {
         it('by utilizing Paper.write()', () => {
             const page = new Paper();
-            const pencil = new Pencil(100);
+            const pencil = new Pencil(100, 1);
             page.write = jest.fn();
             expect(page.getPageContents()).toBe('');
 
@@ -24,7 +24,7 @@ describe('The pencil class', () => {
 
         it('writing is persisted to the page', () => {
             const page = new Paper();
-            const pencil = new Pencil(100);
+            const pencil = new Pencil(100, 1);
 
             pencil.writeOnPaper('Hi!', page);
             expect(page.getPageContents()).toBe('Hi!');
@@ -39,7 +39,7 @@ describe('The pencil class', () => {
     describe('point degradation', () => {
         it('Costs 2 durability to write a capital letter', () => {
             const page = new Paper();
-            const pencil = new Pencil(3);
+            const pencil = new Pencil(3, 1);
 
             pencil.writeOnPaper('H', page);
             expect(page.getPageContents()).toBe('H');
@@ -47,7 +47,7 @@ describe('The pencil class', () => {
         });
         it('Costs 1 durability to write a lowercase letter', () => {
             const page = new Paper();
-            const pencil = new Pencil(3);
+            const pencil = new Pencil(3, 1);
 
             pencil.writeOnPaper('h', page);
             expect(page.getPageContents()).toBe('h');
@@ -55,7 +55,7 @@ describe('The pencil class', () => {
         });
         it("Doesn't waste point durability on spaces", () => {
             const page = new Paper();
-            const pencil = new Pencil(8);
+            const pencil = new Pencil(8, 1);
             expect(pencil.getDurability()).toBe(8);
 
             pencil.writeOnPaper('\n \n \n  Pillar  \n', page);
@@ -64,7 +64,7 @@ describe('The pencil class', () => {
         });
         it("Doesn't waste point durability on newline characters", () => {
             const page = new Paper();
-            const pencil = new Pencil(3);
+            const pencil = new Pencil(3, 1);
             expect(pencil.getDurability()).toBe(3);
 
             pencil.writeOnPaper('\nHey!\n', page);
@@ -73,7 +73,7 @@ describe('The pencil class', () => {
         });
         it('Characters unable to be written are represented by spaces', () => {
             const page = new Paper();
-            const pencil = new Pencil(5);
+            const pencil = new Pencil(5, 1);
 
             pencil.writeOnPaper('   Pillar\n', page);
             expect(page.getPageContents()).toBe('   Pill  \n');

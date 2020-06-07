@@ -1,14 +1,21 @@
 import Paper from './Paper';
 
 export default class Pencil {
-    constructor(private durability: number) {}
+    private initialDurability: number;
+
+    constructor(private durability: number, private length: number) {
+        this.initialDurability = durability;
+    }
 
     private charIsUpper(char: string): boolean {
         return char.toUpperCase() === char;
     }
 
-    getDurability(): number {
-        return this.durability;
+    sharpen(): void {
+        if (this.length > 0) {
+            this.durability = this.initialDurability;
+            this.length--;
+        }
     }
 
     writeOnPaper(text: string, page: Paper): void {
@@ -22,5 +29,13 @@ export default class Pencil {
                 page.write(char);
             } else page.write(' ');
         });
+    }
+
+    getDurability(): number {
+        return this.durability;
+    }
+
+    getLength(): number {
+        return this.length;
     }
 }
