@@ -16,7 +16,6 @@ describe('The ability for a pencil to edit', () => {
 
         expect(page.getPageContents()).toBe('   apple  ');
     });
-
     it('replaces overlapping characters with an @ symbol', () => {
         const page = new Paper();
         const pencil = new Pencil(200, 10);
