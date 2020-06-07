@@ -84,7 +84,31 @@ describe('The pencil class', () => {
     // As a writer
     // I want to be able to sharpen my pencil
     // so that I can continue to write with it after it goes dull
-    // describe('Sharpening and length', () => {
-    //     it("Can be sharpened to restore it's durability", () => {});
-    // });
+    describe('The ability for a pencil to be sharpened', () => {
+        it('restores initial durability upon sharpening', () => {
+            const pencil = new Pencil(5, 1);
+            const page = new Paper();
+            expect(pencil.getDurability()).toBe(5);
+            expect(pencil.getLength()).toBe(1);
+
+            pencil.writeOnPaper('hey ', page);
+            expect(pencil.getLength()).toBe(1);
+
+            pencil.sharpen();
+            expect(pencil.getDurability()).toBe(5);
+            expect(pencil.getLength()).toBe(0);
+        });
+        it("doesn't sharpen with a length of zero", () => {
+            const pencil = new Pencil(5, 2);
+
+            pencil.sharpen();
+            expect(pencil.getLength()).toBe(1);
+
+            pencil.sharpen();
+            expect(pencil.getLength()).toBe(0);
+
+            pencil.sharpen();
+            expect(pencil.getLength()).toBe(0);
+        });
+    });
 });
