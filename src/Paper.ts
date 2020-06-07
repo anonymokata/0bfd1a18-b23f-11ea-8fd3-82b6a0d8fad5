@@ -1,5 +1,6 @@
-import clear from 'clear';
 import chalk from 'chalk';
+
+import { charIsWhitespace } from './Helpers';
 
 export default class Paper {
     private writtenText: string;
@@ -12,8 +13,17 @@ export default class Paper {
         return this.writtenText;
     }
 
-    write(newText: string): void {
-        this.writtenText += newText;
+    write(newChar: string, index?: number): void {
+        if (index === undefined) this.writtenText += newChar;
+        else {
+            const arr = this.writtenText.split('');
+            if (index > arr.length) throw new Error('OutOfBoundsEdit');
+            else if (index === arr.length) arr.push(newChar);
+            else if (!charIsWhitespace(arr[index])) arr[index] = '@';
+            else arr[index] = newChar;
+
+            this.writtenText = arr.join('');
+        }
     }
 
     showPaper(): void {

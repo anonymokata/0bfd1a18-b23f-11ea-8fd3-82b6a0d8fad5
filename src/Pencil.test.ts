@@ -2,6 +2,19 @@ import Pencil from './Pencil';
 import Paper from './Paper';
 
 describe('The pencil class', () => {
+    it("doesn't accept negative numbers in it's constructor", () => {
+        const negativeDurability = () => {
+            new Pencil(-10, 4);
+        };
+
+        const negativeLength = () => {
+            new Pencil(20, -10);
+        };
+
+        expect(negativeDurability).toThrowError();
+        expect(negativeLength).toThrowError();
+    });
+
     // As a writer
     // I want to be able use a pencil to write text on a sheet of paper
     // so that I can better remember my thoughts
@@ -13,9 +26,6 @@ describe('The pencil class', () => {
             expect(page.getPageContents()).toBe('');
 
             pencil.writeOnPaper('Hi!', page);
-            expect(page.write).toHaveBeenCalledWith('H');
-            expect(page.write).toHaveBeenCalledWith('i');
-            expect(page.write).toHaveBeenCalledWith('!');
             expect(page.write).toHaveBeenCalledTimes(3);
 
             pencil.writeOnPaper(' Hello.', page);

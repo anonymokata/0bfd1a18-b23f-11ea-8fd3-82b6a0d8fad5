@@ -12,7 +12,7 @@ describe('The ability for a pencil to edit', () => {
         const pencil = new Pencil(200, 10);
 
         pencil.writeOnPaper('    \n     ', page);
-        pencil.edit(3, 'apple', page);
+        pencil.editPaper(3, 'apple', page);
 
         expect(page.getPageContents()).toBe('   apple  ');
     });
@@ -22,7 +22,7 @@ describe('The ability for a pencil to edit', () => {
         const pencil = new Pencil(200, 10);
 
         pencil.writeOnPaper('codekata', page);
-        pencil.edit(0, 'conflict', page);
+        pencil.editPaper(0, 'conflict', page);
 
         expect(page.getPageContents()).toBe('@@@@@@@@');
     });
@@ -31,16 +31,16 @@ describe('The ability for a pencil to edit', () => {
         const pencil = new Pencil(200, 10);
 
         pencil.writeOnPaper('code', page);
-        pencil.edit(0, 'overflow', page);
+        pencil.editPaper(0, 'overflow', page);
 
         expect(page.getPageContents()).toBe('@@@@flow');
     });
-    it("throws an error if an index is given which doesn't exist", () => {
+    it("throws an error if an edit is attempted where there's no text", () => {
         const page = new Paper();
         const pencil = new Pencil(200, 10);
 
         const badIndex = () => {
-            pencil.edit(5, 'dog', page);
+            pencil.editPaper(5, 'dog', page);
         };
 
         expect(badIndex).toThrowError();
