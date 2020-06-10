@@ -26,6 +26,20 @@ export default class Paper {
         }
     }
 
+    erase(textToRemove: string): void {
+        const match = this.writtenText.lastIndexOf(textToRemove);
+        if (match >= 0) {
+            const whiteSpace = ' '.repeat(textToRemove.length);
+            this.writtenText =
+                this.writtenText.substring(0, match) +
+                whiteSpace +
+                this.writtenText.substring(
+                    match + textToRemove.length,
+                    this.writtenText.length,
+                );
+        }
+    }
+
     showPaper(): void {
         console.log('\n' + this.paperColor(this.formatStrings.top));
         console.log(this.writtenText);

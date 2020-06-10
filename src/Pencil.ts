@@ -22,27 +22,31 @@ export default class Pencil {
         }
     }
 
-    private useDurabilityToWrite(char: string, page: Paper, i?: number): void {
-        if (charIsWhitespace(char)) page.write(char, i);
+    private useDurabilityToWrite(char: string, paper: Paper, i?: number): void {
+        if (charIsWhitespace(char)) paper.write(char, i);
         else if (charIsUpper(char) && this.durability >= 2) {
             this.durability -= 2;
-            page.write(char, i);
+            paper.write(char, i);
         } else if (this.durability >= 1) {
             this.durability--;
-            page.write(char, i);
-        } else page.write(' ');
+            paper.write(char, i);
+        } else paper.write(' ');
     }
 
-    writeOnPaper(text: string, page: Paper): void {
+    writeOnPaper(text: string, paper: Paper): void {
         text.split('').forEach((char) => {
-            this.useDurabilityToWrite(char, page);
+            this.useDurabilityToWrite(char, paper);
         });
     }
 
-    editPaper(index: number, text: string, page: Paper): void {
+    editPaper(index: number, text: string, paper: Paper): void {
         text.split('').forEach((char, i) => {
-            this.useDurabilityToWrite(char, page, i + index);
+            this.useDurabilityToWrite(char, paper, i + index);
         });
+    }
+
+    eraseFromPaper(textToRemove: string, paper: Paper): void {
+        paper.erase(textToRemove);
     }
 
     getDurability(): number {
