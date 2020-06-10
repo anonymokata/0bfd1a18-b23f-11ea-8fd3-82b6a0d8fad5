@@ -13,6 +13,8 @@ testing, and typescript.
 Links any travis integration results have been removed in an effort
 to stay anonymous, as instructed.
 
+_Note: In this implementation, I've assumed that newline characters are considered "white space"_
+
 ### Running Locally
 
 _Note: A CodeSandbox has been created for this repository, and is [available here.]() There you are able to use the entire application, without setup._
