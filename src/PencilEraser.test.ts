@@ -47,4 +47,35 @@ describe('The eraser portion of the pencil class', () => {
             expect(page.getPageContents()).toBe('Testing Testing 123');
         });
     });
+
+    // As a pencil manufacturer
+    // I want a pencil eraser to eventually wear out
+    // so that I can sell more pencils
+    describe('Eraser durability', () => {
+        it("doesn't spend eraser durability when erasing whitespaces", () => {
+            const page = new Paper();
+            const pencil = new Pencil(100, 100, 30);
+
+            expect(pencil.getEraserDurability()).toBe(30);
+            pencil.writeOnPaper('Buffalo Bill', page);
+            pencil.eraseFromPaper('o Bill', page);
+            expect(pencil.getEraserDurability()).toBe(25);
+            expect(page.getPageContents()).toBe('Buffal      ');
+        });
+        it('Erases in the opposite order in which it was written', () => {
+            const page = new Paper();
+            const pencil = new Pencil(100, 100, 30);
+
+            expect(pencil.getEraserDurability()).toBe(30);
+
+            pencil.writeOnPaper('Kata Code Kata', page);
+            pencil.eraseFromPaper('Kata', page);
+            expect(pencil.getEraserDurability()).toBe(26);
+            expect(page.getPageContents()).toBe('Kata Code     ');
+
+            pencil.eraseFromPaper('Kata', page);
+            expect(pencil.getEraserDurability()).toBe(22);
+            expect(page.getPageContents()).toBe('     Code     ');
+        });
+    });
 });
