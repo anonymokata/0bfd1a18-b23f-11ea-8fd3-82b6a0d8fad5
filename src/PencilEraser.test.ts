@@ -29,14 +29,14 @@ describe('The eraser portion of the pencil class', () => {
             const page = new Paper();
             const pencil = new Pencil(100, 100);
 
-            pencil.writeOnPaper('H e l\nl o', page);
-            pencil.eraseFromPaper(' ', page);
-            pencil.eraseFromPaper(' ', page);
-            pencil.eraseFromPaper(' ', page);
-            expect(page.getPageContents()).toBe('Hel\nlo');
+            pencil.writeOnPaper('H-e-l\nl-o', page);
+            pencil.eraseFromPaper('-', page);
+            pencil.eraseFromPaper('-', page);
+            pencil.eraseFromPaper('-', page);
+            expect(page.getPageContents()).toBe('H e l\nl o');
 
             pencil.eraseFromPaper('\n', page);
-            expect(page.getPageContents()).toBe('Hello');
+            expect(page.getPageContents()).toBe('H e l l o');
         });
         it("alters nothing if the specified set of characters don't exist on the page", () => {
             const page = new Paper();
