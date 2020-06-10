@@ -29,14 +29,15 @@ export default class Paper {
     erase(textToRemove: string): void {
         const match = this.writtenText.lastIndexOf(textToRemove);
         if (match >= 0) {
+            const removalIndex = {
+                endOfFront: match,
+                startOfBack: match + textToRemove.length,
+            };
             const whiteSpace = ' '.repeat(textToRemove.length);
             this.writtenText =
-                this.writtenText.substring(0, match) +
+                this.writtenText.substring(0, removalIndex.endOfFront) +
                 whiteSpace +
-                this.writtenText.substring(
-                    match + textToRemove.length,
-                    this.writtenText.length,
-                );
+                this.writtenText.substring(removalIndex.startOfBack);
         }
     }
 
