@@ -3,32 +3,39 @@ import Paper from './Paper';
 import { charIsUpper, charIsWhitespace } from './Helpers';
 
 export default class Pencil {
-    private initialDurability: number;
-    private durability: number;
-    private length: number;
+    private initialPencilDurability: number;
+    private pencilDurability: number;
+    private eraserDurability: number;
+    private pencilLength: number;
 
-    constructor(durability: number, length: number) {
-        if (durability < 0) throw new Error('NegativeDurability');
-        if (length < 0) throw new Error('NegativeLength');
-        this.initialDurability = durability;
-        this.durability = durability;
-        this.length = length;
+    constructor(
+        pencilDurability: number,
+        pencilLength: number,
+        eraserDurability: number,
+    ) {
+        if (pencilDurability < 0) throw new Error('NegativePencilDurability');
+        if (pencilLength < 0) throw new Error('NegativePencilLength');
+        if (eraserDurability < 0) throw new Error('NegativeEraserDurability');
+        this.initialPencilDurability = pencilDurability;
+        this.pencilDurability = pencilDurability;
+        this.pencilLength = pencilLength;
+        this.eraserDurability = eraserDurability;
     }
 
     sharpen(): void {
-        if (this.length > 0) {
-            this.durability = this.initialDurability;
-            this.length--;
+        if (this.pencilLength > 0) {
+            this.pencilDurability = this.initialPencilDurability;
+            this.pencilLength--;
         }
     }
 
     private useDurabilityToWrite(char: string, paper: Paper, i?: number): void {
         if (charIsWhitespace(char)) paper.write(char, i);
-        else if (charIsUpper(char) && this.durability >= 2) {
-            this.durability -= 2;
+        else if (charIsUpper(char) && this.pencilDurability >= 2) {
+            this.pencilDurability -= 2;
             paper.write(char, i);
-        } else if (this.durability >= 1) {
-            this.durability--;
+        } else if (this.pencilDurability >= 1) {
+            this.pencilDurability--;
             paper.write(char, i);
         } else paper.write(' ');
     }
@@ -45,15 +52,25 @@ export default class Pencil {
         });
     }
 
-    eraseFromPaper(textToRemove: string, paper: Paper): void {
-        paper.erase(textToRemove);
+    eraseFromPaper(requestedTxtToRemove: string, paper: Paper): void {
+        const attemptedRemovalLength = requestedTxtToRemove.replace(/\s/g, '')
+            .length;
+        const txtAbleToBeErased = requestedTxtToRemove.substring(
+            attemptedRemovalLength - this.eraserDurability,
+        );
+        paper.erase(txtAbleToBeErased);
+        this.eraserDurability -= txtAbleToBeErased.replace(/\s/g, '').length;
     }
 
-    getDurability(): number {
-        return this.durability;
+    getPencilDurability(): number {
+        return this.pencilDurability;
     }
 
-    getLength(): number {
-        return this.length;
+    getPencilLength(): number {
+        return this.pencilLength;
+    }
+
+    getEraserDurability(): number {
+        return this.eraserDurability;
     }
 }

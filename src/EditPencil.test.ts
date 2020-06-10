@@ -9,7 +9,7 @@ import Pencil from './Pencil';
 describe('The ability for a pencil to edit', () => {
     it('replaces space or newline characters with given text ', () => {
         const page = new Paper();
-        const pencil = new Pencil(200, 10);
+        const pencil = new Pencil(200, 10, 50);
 
         pencil.writeOnPaper('    \n     ', page);
         pencil.editPaper(3, 'apple', page);
@@ -18,7 +18,7 @@ describe('The ability for a pencil to edit', () => {
     });
     it('replaces overlapping characters with an @ symbol', () => {
         const page = new Paper();
-        const pencil = new Pencil(200, 10);
+        const pencil = new Pencil(200, 10, 50);
 
         pencil.writeOnPaper('codekata', page);
         pencil.editPaper(0, 'conflict', page);
@@ -27,7 +27,7 @@ describe('The ability for a pencil to edit', () => {
     });
     it("if an edit overflows the page's initial content, the content is extended", () => {
         const page = new Paper();
-        const pencil = new Pencil(200, 10);
+        const pencil = new Pencil(200, 10, 50);
 
         pencil.writeOnPaper('code', page);
         pencil.editPaper(0, 'overflow', page);
@@ -36,7 +36,7 @@ describe('The ability for a pencil to edit', () => {
     });
     it("throws an error if an edit is attempted where there's no text", () => {
         const page = new Paper();
-        const pencil = new Pencil(200, 10);
+        const pencil = new Pencil(200, 10, 50);
 
         const badIndex = () => {
             pencil.editPaper(5, 'dog', page);

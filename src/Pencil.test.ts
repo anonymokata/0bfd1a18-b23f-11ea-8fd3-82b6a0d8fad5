@@ -3,16 +3,21 @@ import Paper from './Paper';
 
 describe('The pencil class', () => {
     it("doesn't accept negative numbers in it's constructor", () => {
-        const negativeDurability = () => {
-            new Pencil(-10, 4);
+        const negativePencilDurability = () => {
+            new Pencil(-10, 4, 50);
         };
 
-        const negativeLength = () => {
-            new Pencil(20, -10);
+        const negativePencilLength = () => {
+            new Pencil(20, -10, 50);
         };
 
-        expect(negativeDurability).toThrowError();
-        expect(negativeLength).toThrowError();
+        const negativeEraserDurability = () => {
+            new Pencil(20, 10, -5);
+        };
+
+        expect(negativePencilDurability).toThrowError();
+        expect(negativePencilLength).toThrowError();
+        expect(negativeEraserDurability).toThrowError();
     });
 
     // As a writer
@@ -21,7 +26,7 @@ describe('The pencil class', () => {
     describe('can write a message on a given paper', () => {
         it('by utilizing Paper.write()', () => {
             const page = new Paper();
-            const pencil = new Pencil(100, 1);
+            const pencil = new Pencil(100, 1, 20);
             page.write = jest.fn();
             expect(page.getPageContents()).toBe('');
 
@@ -34,7 +39,7 @@ describe('The pencil class', () => {
 
         it('writing is persisted to the page', () => {
             const page = new Paper();
-            const pencil = new Pencil(100, 1);
+            const pencil = new Pencil(100, 1, 20);
 
             pencil.writeOnPaper('Hi!', page);
             expect(page.getPageContents()).toBe('Hi!');
@@ -49,45 +54,45 @@ describe('The pencil class', () => {
     describe('point degradation', () => {
         it('Costs 2 durability to write a capital letter', () => {
             const page = new Paper();
-            const pencil = new Pencil(3, 1);
+            const pencil = new Pencil(3, 1, 20);
 
             pencil.writeOnPaper('H', page);
             expect(page.getPageContents()).toBe('H');
-            expect(pencil.getDurability()).toBe(1);
+            expect(pencil.getPencilDurability()).toBe(1);
         });
         it('Costs 1 durability to write a lowercase letter', () => {
             const page = new Paper();
-            const pencil = new Pencil(3, 1);
+            const pencil = new Pencil(3, 1, 20);
 
             pencil.writeOnPaper('h', page);
             expect(page.getPageContents()).toBe('h');
-            expect(pencil.getDurability()).toBe(2);
+            expect(pencil.getPencilDurability()).toBe(2);
         });
         it("Doesn't waste point durability on spaces", () => {
             const page = new Paper();
-            const pencil = new Pencil(8, 1);
-            expect(pencil.getDurability()).toBe(8);
+            const pencil = new Pencil(8, 1, 20);
+            expect(pencil.getPencilDurability()).toBe(8);
 
             pencil.writeOnPaper('\n \n \n  Pillar  \n', page);
             expect(page.getPageContents()).toBe('\n \n \n  Pillar  \n');
-            expect(pencil.getDurability()).toBe(1);
+            expect(pencil.getPencilDurability()).toBe(1);
         });
         it("Doesn't waste point durability on newline characters", () => {
             const page = new Paper();
-            const pencil = new Pencil(3, 1);
-            expect(pencil.getDurability()).toBe(3);
+            const pencil = new Pencil(3, 1, 20);
+            expect(pencil.getPencilDurability()).toBe(3);
 
             pencil.writeOnPaper('\nHey!\n', page);
             expect(page.getPageContents()).toBe('\nHe  \n');
-            expect(pencil.getDurability()).toBe(0);
+            expect(pencil.getPencilDurability()).toBe(0);
         });
         it('Characters unable to be written are represented by spaces', () => {
             const page = new Paper();
-            const pencil = new Pencil(5, 1);
+            const pencil = new Pencil(5, 1, 20);
 
             pencil.writeOnPaper('   Pillar\n', page);
             expect(page.getPageContents()).toBe('   Pill  \n');
-            expect(pencil.getDurability()).toBe(0);
+            expect(pencil.getPencilDurability()).toBe(0);
         });
     });
 
@@ -96,29 +101,29 @@ describe('The pencil class', () => {
     // so that I can continue to write with it after it goes dull
     describe('The ability for a pencil to be sharpened', () => {
         it('restores initial durability upon sharpening', () => {
-            const pencil = new Pencil(5, 1);
+            const pencil = new Pencil(5, 1, 10);
             const page = new Paper();
-            expect(pencil.getDurability()).toBe(5);
-            expect(pencil.getLength()).toBe(1);
+            expect(pencil.getPencilDurability()).toBe(5);
+            expect(pencil.getPencilLength()).toBe(1);
 
             pencil.writeOnPaper('hey ', page);
-            expect(pencil.getLength()).toBe(1);
+            expect(pencil.getPencilLength()).toBe(1);
 
             pencil.sharpen();
-            expect(pencil.getDurability()).toBe(5);
-            expect(pencil.getLength()).toBe(0);
+            expect(pencil.getPencilDurability()).toBe(5);
+            expect(pencil.getPencilLength()).toBe(0);
         });
         it("doesn't sharpen with a length of zero", () => {
-            const pencil = new Pencil(5, 2);
+            const pencil = new Pencil(5, 2, 10);
 
             pencil.sharpen();
-            expect(pencil.getLength()).toBe(1);
+            expect(pencil.getPencilLength()).toBe(1);
 
             pencil.sharpen();
-            expect(pencil.getLength()).toBe(0);
+            expect(pencil.getPencilLength()).toBe(0);
 
             pencil.sharpen();
-            expect(pencil.getLength()).toBe(0);
+            expect(pencil.getPencilLength()).toBe(0);
         });
     });
 });

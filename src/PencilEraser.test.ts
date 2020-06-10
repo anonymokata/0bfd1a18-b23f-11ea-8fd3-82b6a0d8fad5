@@ -8,7 +8,7 @@ describe('The eraser portion of the pencil class', () => {
     describe('the erase method', () => {
         it('erases the last instance of a word on a page', () => {
             const page = new Paper();
-            const pencil = new Pencil(100, 100);
+            const pencil = new Pencil(100, 100, 20);
 
             pencil.writeOnPaper(
                 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?',
@@ -27,7 +27,7 @@ describe('The eraser portion of the pencil class', () => {
         });
         it('can erase space and newline characters', () => {
             const page = new Paper();
-            const pencil = new Pencil(100, 100);
+            const pencil = new Pencil(100, 100, 20);
 
             pencil.writeOnPaper('H-e-l\nl-o', page);
             pencil.eraseFromPaper('-', page);
@@ -40,7 +40,7 @@ describe('The eraser portion of the pencil class', () => {
         });
         it("alters nothing if the specified set of characters don't exist on the page", () => {
             const page = new Paper();
-            const pencil = new Pencil(100, 100);
+            const pencil = new Pencil(100, 100, 20);
 
             pencil.writeOnPaper('Testing Testing 123', page);
             pencil.eraseFromPaper('Hey there', page);
