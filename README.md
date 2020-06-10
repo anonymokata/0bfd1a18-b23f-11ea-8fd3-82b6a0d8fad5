@@ -6,7 +6,9 @@ appreciated.
 ### Project Layout
 
 All source code is stored in `/src` alongside each respective testing file.
-Compiled typescript will be placed in `/dist`, and can be ignored. All other files in the root directory are purely configuration files for linting, testing, and typescript.
+Compiled typescript will be placed in `/dist`, and can be ignored. All other
+files in the root directory are purely configuration files for linting,
+testing, and typescript.
 
 Links any travis integration results have been removed in an effort
 to stay anonymous, as instructed.
@@ -31,6 +33,7 @@ To run the program, use `npm start`, after the aforementioned `npm install`.
 Additional options are listed in the `package.json` and include:
 
 -   `npm run test` - Executes all Jest tests + generates coverage.
--   `npm run clean` - Removes lingering source map + coverage files. Please run this in-between generating new coverage reports / making code alterations.
+-   `npm run clean` - Removes lingering source map + coverage files. Please run
+    this in-between generating new coverage reports / making code alterations.
 -   `npm run lint` - Validates code is linted.
 -   `npm run view:cov` - Serves a copy of the existing coverage report to explore in your browser.
