@@ -1,4 +1,4 @@
-## ✏️Pencil Durability Kata - [Live Demo (CodeSandbox.io)]()
+## ✏️Pencil Durability Kata - [Live Demo (Repl.it)](https://pencil-kata.bmitchinson.repl.run)
 
 Thank you for your time reviewing this submission. Any and all feedback is
 appreciated.
@@ -17,7 +17,7 @@ _Note: In this implementation, I've assumed that newline characters are consider
 
 ### Running Locally
 
-_Note: A CodeSandbox has been created for this repository, and is [available here.]() There you are able to use the entire application, without setup._
+_Note: An online demo has been created for this repository, and is [available here.](https://pencil-kata.bmitchinson.repl.run) There you are able to use the entire application, without setup._
 
 All dependencies are managed by npm in the `package.json` file, and can be
 downloaded to the project by using `npm install` in the root directory.
@@ -28,13 +28,14 @@ was tested to work as well. If on Mac or Linux, I recommend using
 
 ### Commands to run
 
-To run the program, use `npm start`, after the aforementioned `npm install`.
+To run the demo, use `npm run demo`, after the aforementioned `npm install`.
+To run all Jest tests + generate coverage use `npm run test`.
 
 ---
 
 Additional options are listed in the `package.json` and include:
 
--   `npm run test` - Executes all Jest tests + generates coverage.
+-   `npm run test` - .
 -   `npm run clean` - Removes lingering source map + coverage files. Please run
     this in-between generating new coverage reports / making code alterations.
 -   `npm run lint` - Validates code is linted.

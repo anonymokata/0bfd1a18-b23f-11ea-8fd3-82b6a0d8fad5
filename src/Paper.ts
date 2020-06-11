@@ -41,6 +41,7 @@ export default class Paper {
         }
     }
 
+    // Used in `npm run demo` only
     showPaper(): void {
         console.log('\n' + this.paperColor(this.formatStrings.top));
         console.log(this.writtenText);
