@@ -4,7 +4,7 @@
     "description": "Pencil Durability Code Kata",
     "main": "main.js",
     "scripts": {
-        "demo": "ts-node src/index.ts",
+        "demo": "ts-node src/demo.ts",
         "test": "jest --coverage",
         "view:cov": "serve coverage/lcov-report",
         "clean": "rm -rf coverage src/**/*.js src/**/*.map",
